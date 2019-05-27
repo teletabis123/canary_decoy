@@ -7,10 +7,9 @@ rm get-pip.py
 sudo apt-get -y remove ntp
 
 virtualenv honeypot
-cd honeypot
-source bin/activate
-cd opencanary
+cp -r opencanary honeypot
+source honeypot/bin/activate
+cd honeypot/opencanary
 pip install opencanary scapy pcapy rdpy
 opencanaryd --copyconfig
-
 opencanaryd --start
