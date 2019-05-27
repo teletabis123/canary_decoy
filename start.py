@@ -10,7 +10,8 @@ def main_menu() :
     print("     2. Configure Server")
     print("     3. Start HoneyPot")
     print("     4. Display Log")
-    print("     5. Exit")
+    print("     5. Stop Honeypot")
+    print("     6. Exit")
 
 def ReadFile():
     global contents
@@ -39,6 +40,13 @@ def WriteFile():
     fwrite = open("logfile.txt", "w+")
     fwrite.write(json)
     fwrite.close()
+
+def ReadWrite():
+    f = open("steps.txt", "r+")
+    temp = f.read()
+    print(temp)
+    f.write(temp + "\nasdf")
+    f.close()
 
 # main
 if __name__ == "__main__" :
@@ -72,4 +80,5 @@ if __name__ == "__main__" :
     print("Contents: "+contents)
     Parser()
     WriteFile()
+    # ReadWrite()
     
