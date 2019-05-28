@@ -1,12 +1,14 @@
 #!/bin/bash
 import os
 import json
-# import rhinoscriptsyntax as rs
+import subprocess
 
 contents = ""
 json_str = ""
+startCanary = False
 
 def main_menu() :
+    os.system("clear")
     print("     0. About")
     print("     1. Installation")
     print("     2. Configure Server")
@@ -51,19 +53,23 @@ def ReadWrite():
     f.close()
 
 def ProcessJson():
+    ReadFile()
+    Parser()
+    WriteFile()
+
     f = open("logfile.txt","r")
     data = f.read()
     dataLog = json.loads(data)
     
     # print(dataLog)
 
+    print("Log data for HTML: \n")
     i = 1
     for d in dataLog:
-        print(str(i)+": "+d["dst_host"])
-        i = i+1
+        # print(str(i)+": "+d["dst_host"])
         # print(d)
         if(len(d["logdata"]) == 6):
-            print("data: \n")
+            print("Data "+str(i)+": ")
             print("\tDestination Port: " + str(d["dst_port"]))
             print("\tTime Accessed   : " + d["local_time"])
             print("\tSource Host IP  : " + d["src_host"])
@@ -71,42 +77,67 @@ def ProcessJson():
             print("\tPassword Used   : " + d["logdata"]["PASSWORD"])
             print("\tUsername Used   : " + d["logdata"]["USERNAME"])
             print("\tUser Agent Used : " + d["logdata"]["USERAGENT"])
+            i = i+1
             
+def doInstallation():
+    shellscript = subprocess.Popen(["install.sh"], stdin=subprocess.PIPE)
+    shellscript.stdin.write("yes\n")
+    shellscript.stdin.close()
+    returncode = shellscript.wait()
 
+def startCanary():
+    shellscript = subprocess.Popen(["start.sh"], stdin=subprocess.PIPE)
+    shellscript.stdin.write("yes\n")
+    shellscript.stdin.close()
+    returncode = shellscript.wait()
 
 # main
 if __name__ == "__main__" :
-    # os.system("sudo apt-get update")
-    # os.system("sudo apt-get install python-dev python-pip python-virtualenv wget curl samba build-essential libssl-dev libffi-dev libpcap-dev gcc g++")
-    # os.system("wget -c https://bootstrap.pypa.io/get-pip.py")
-    # os.system("python get-pip.py")
-    # os.system("rm get-pip.py")
-    # os.system("sudo apt-get -y remove ntp")
-    # os.system("clear")
 
     print("Initialized part 1")
     print("Activate Open Canary")
-
-    # #os.system("apt-get update")
-    # os.system("virtualenv honeypot")
-    # os.system("source honeypot/bin/activate")
-    # #os.system("cd opencanary")
-    # os.system("pip install opencanary scapy pcapy rdpy")
-    # os.system("opencanaryd --copyconfig")
-    # #os.system("opencanaryd --start")
-    # #os.system("opencanaryd --stop")
 
     i = 1
     #main loop
     while i == 1 :
         main_menu()
-        break
+        nav = input("Choose a Menu (0 - 6) : ")
+        if(int(nav) == 0):
+            print("Menu About")
 
-    ReadFile()
-    # print("Contents: "+contents)
-    Parser()
-    WriteFile()
+        elif(int(nav) == 1):
+            print("Menu Installation")
+            doInstallation()
+
+        elif(int(nav) == 2):
+            print("Menu Configure Server")
+
+        elif(int(nav) == 3):
+            print("Menu Start Honeypot")
+            startCanary()
+            startCanary = True
+
+        elif(int(nav) == 4):
+            print("Menu Display Log")
+            ProcessJson()
+
+        elif(int(nav) == 5):
+            print("Menu Stop Honeypot")
+            os.system("opencanaryd --stop")
+            startCanary = False
+
+        elif(int(nav) == 6):
+            print("Menu Exit")
+            if(startCanary):
+                print("Stop Decanary")
+                os.system("opencanaryd --stop")
+            else:
+                print("Out from program")
+            break
+        nav = input("Press any button ... ")
+
+    
     # ReadWrite()
 
-    ProcessJson()
+    
     
