@@ -2,6 +2,7 @@
 import os
 import json
 import subprocess
+from six.moves import input
 
 contents = ""
 json_str = ""
@@ -228,7 +229,7 @@ if __name__ == "__main__" :
                 print("Out from program")
                 os.system("clear")
             break
-        raw_input("Press any button to continue")
+        input("Press any button to continue")
         os.system("clear")
 
     
