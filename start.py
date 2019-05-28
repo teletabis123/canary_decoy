@@ -245,18 +245,18 @@ if __name__ == "__main__" :
     while i == 1 :
         main_menu()
         nav = input("Choose a Menu (0 - 6) : ")
-        if(int(nav) == 0):
+        if(nav == "0"):
             print("Menu About")
             fread = open("logfileScan.txt", "r")
             contents = fread.read()
             print(contents)
             fread.close()
 
-        elif(int(nav) == 1):
+        elif(nav == "1"):
             print("Menu Installation")
             doInstallation()
 
-        elif(int(nav) == 2):
+        elif(nav == "2"):
             os.system("clear")
             main_logo()
             print("Menu Start Honeypot")
@@ -282,17 +282,17 @@ if __name__ == "__main__" :
             startcanary = True
             startCanary()
 
-        elif(int(nav) == 3):
+        elif(nav == "3"):
             print("Menu Display Log")
             ProcessJson()
 
-        elif(int(nav) == 4):
+        elif(nav == "4"):
             print("Menu Stop Honeypot")
             stopCanary()
             global startcanary
             startcanary = False
 
-        elif(int(nav) == 5):
+        elif(nav == "5"):
             print("Menu Exit")
             if(startCanary):
                 print("Stop Decanary")
