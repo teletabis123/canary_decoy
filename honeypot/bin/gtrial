@@ -1,4 +1,4 @@
-#!/var/www/html/honeypot/honeypot/bin/python2
+#!/root/Desktop/honeypot/honeypot/bin/python2
 
 # Twisted, the Framework of Your Internet
 # Copyright (c) 2001-2004 Twisted Matrix Laboratories.

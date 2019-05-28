@@ -1,4 +1,13 @@
 import json
+from os.path import expanduser
+import os
+#import __root__
+
+#confPath = "~/.opencanary.conf"
+#confPath = os.path.dirname(__file__) + ".opencanary.conf"
+#confPath = "../../.opencanary.conf"
+#path = os.cwd()
+confPath = expanduser("~") + "/.opencanary.conf"
 
 def main():
     print("Configure opencanary as:")
@@ -35,7 +44,7 @@ def setLinuxDefault():
     source.close()
 
     # Baca .opencanary.conf
-    destTest = open(".opencanary.conf", "r") 
+    destTest = open(confPath, "r") 
     destTestContent = destTest.read()
     destTest.close()
 
@@ -43,7 +52,7 @@ def setLinuxDefault():
     # checkConfig(sourceContent, destTestContent)
 
     # Tulis ke windows.conf ke .opencanary.conf
-    dest = open(".opencanary.conf", "w")
+    dest = open(confPath, "w")
     dest.write(sourceContent)
     dest.close()
 
@@ -64,7 +73,7 @@ def setWindowsDefault():
     source.close()
 
     # Baca .opencanary.conf
-    destTest = open(".opencanary.conf", "r") 
+    destTest = open(confPath, "r") 
     destTestContent = destTest.read()
     destTest.close()
 
@@ -72,7 +81,7 @@ def setWindowsDefault():
     # checkConfig(sourceContent, destTestContent)
 
     # Tulis ke windows.conf ke .opencanary.conf
-    dest = open(".opencanary.conf", "w")
+    dest = open(confPath, "w")
     dest.write(sourceContent)
     dest.close()
 
@@ -94,7 +103,7 @@ def defaultSetting():
     source.close()
 
     # Baca .opencanary.conf
-    destTest = open(".opencanary.conf", "r") 
+    destTest = open(confPath, "r") 
     destTestContent = destTest.read()
     destTest.close()
 
@@ -103,7 +112,7 @@ def defaultSetting():
         return
 
     # Tulis ke windows.conf ke .opencanary.conf
-    dest = open(".opencanary.conf", "w")
+    dest = open(confPath, "w")
     dest.write(sourceContent)
     dest.close()
 
@@ -112,7 +121,7 @@ def defaultSetting():
 def manualSetting():
     print("You have choosen the wrong path.\nNow you need to configure them all!!!!!!!!!!")
     #Ribetnya disini
-     printThePorts()
+    printThePorts()
 
 
 def printThePorts():

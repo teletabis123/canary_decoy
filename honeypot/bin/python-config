@@ -1,4 +1,4 @@
-#!/var/www/html/honeypot/honeypot/bin/python
+#!/root/Desktop/honeypot/honeypot/bin/python
 
 import sys
 import getopt

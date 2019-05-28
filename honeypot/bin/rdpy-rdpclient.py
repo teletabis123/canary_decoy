@@ -1,4 +1,4 @@
-#!/var/www/html/honeypot/honeypot/bin/python2
+#!/root/Desktop/honeypot/honeypot/bin/python2
 #
 # Copyright (c) 2014-2015 Sylvain Peyrefitte
 #

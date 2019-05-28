@@ -2,11 +2,12 @@
 import os
 import json
 import subprocess
+import settingConfigFile as settingConfig
 from six.moves import input
 
 contents = ""
 json_str = ""
-startCanary = False
+startcanary = False
 
 def main_logo() :
     print(" _______   _______ .__   __.      ___      .______     ____    ____ ")
@@ -22,11 +23,10 @@ def main_menu() :
     main_logo()
     print("     0. About")
     print("     1. Installation")
-    print("     2. Configure Server")
-    print("     3. Start HoneyPot")
-    print("     4. Display Log")
-    print("     5. Stop Honeypot")
-    print("     6. Exit")
+    print("     2. Start HoneyPot")
+    print("     3. Display Log")
+    print("     4. Stop Honeypot")
+    print("     5. Exit")
 
 def ReadFile():
     global contents
@@ -174,11 +174,14 @@ def ProcessJson():
 def doInstallation():
     subprocess.call("./install.sh")
 
+def configFile():
+    subprocess.call("./config.sh")
+
 def startCanary():
-    shellscript = subprocess.Popen(["start.sh"], stdin=subprocess.PIPE)
-    shellscript.stdin.write("yes\n")
-    shellscript.stdin.close()
-    returncode = shellscript.wait()
+    subprocess.call("./start.sh")
+
+def stopCanary():
+    subprocess.call("./stop.sh")
 
 # main
 if __name__ == "__main__" :
@@ -203,23 +206,42 @@ if __name__ == "__main__" :
             doInstallation()
 
         elif(int(nav) == 2):
-            print("Menu Configure Server")
+            os.system("clear")
+            main_logo()
+            print("Menu Start Honeypot")
+            print("  1. Use default configuration")
+            print("  2. Use Linux configuration")
+            print("  3. Use Windows configuration")
+            print("  4. Use custom configuration")
+            i = int(input("Choose: "))
+            configFile()
+            if i == 1:
+                print("Default")
+                settingConfig.defaultSetting()
+            if i == 2:
+                print("Linux")
+                settingConfig.setLinuxDefault()
+            if i == 3:
+                print("Windows")
+                settingConfig.setWindowsDefault()
+            if i == 4:
+                print("Custom")
+                settingConfig.manualSetting()
+            global startcanary
+            startcanary = True
+            startCanary()
 
         elif(int(nav) == 3):
-            print("Menu Start Honeypot")
-            startCanary()
-            startCanary = True
-
-        elif(int(nav) == 4):
             print("Menu Display Log")
             ProcessJson()
 
-        elif(int(nav) == 5):
+        elif(int(nav) == 4):
             print("Menu Stop Honeypot")
-            os.system("opencanaryd --stop")
-            startCanary = False
+            stopCanary()
+            global startcanary
+            startcanary = False
 
-        elif(int(nav) == 6):
+        elif(int(nav) == 5):
             print("Menu Exit")
             if(startCanary):
                 print("Stop Decanary")
