@@ -3,48 +3,36 @@ Detected activities:
 Host get inside HTML:
 1. Data 1: 
 	Destination Port: 80
-	Time Accessed   : 2019-05-28 13:51:20.324334
-	Source Host IP  : 192.168.0.5
-	Source Host Port: 51982
-	User Agent Used : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
-2. Data 2: 
-	Destination Port: 80
-	Time Accessed   : 2019-05-28 14:05:18.964905
-	Source Host IP  : 192.168.0.5
-	Source Host Port: 52231
-	User Agent Used : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
-3. Data 3: 
-	Destination Port: 80
-	Time Accessed   : 2019-05-28 14:05:53.205018
-	Source Host IP  : 192.168.0.5
-	Source Host Port: 52231
-	User Agent Used : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+	Time Accessed   : 2019-05-26 11:56:46.592954
+	Source Host IP  : 10.20.10.45
+	Source Host Port: 38544
+	User Agent Used : Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0
 
 Host Sign in into HTML:
 1. Data 1: 
 	Destination Port: 80
-	Time Accessed   : 2019-05-28 13:51:28.659792
-	Source Host IP  : 192.168.0.5
-	Source Host Port: 51984
-	Password Used   : aaaaaa
-	Username Used   : aaaaaa
-	User Agent Used : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+	Time Accessed   : 2019-05-26 11:56:33.864035
+	Source Host IP  : 10.20.10.133
+	Source Host Port: 49115
+	Password Used   : sjdjdnf
+	Username Used   : kimakonta
+	User Agent Used : Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Mobile Safari/537.36
 2. Data 2: 
 	Destination Port: 80
-	Time Accessed   : 2019-05-28 14:05:20.633979
-	Source Host IP  : 192.168.0.5
-	Source Host Port: 52231
-	Password Used   : 
-	Username Used   : 
-	User Agent Used : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+	Time Accessed   : 2019-05-26 11:56:50.395588
+	Source Host IP  : 10.20.10.133
+	Source Host Port: 49115
+	Password Used   : aderai
+	Username Used   : aderai
+	User Agent Used : Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Mobile Safari/537.36
 3. Data 3: 
 	Destination Port: 80
-	Time Accessed   : 2019-05-28 14:05:47.727734
-	Source Host IP  : 192.168.0.5
-	Source Host Port: 52232
-	Password Used   : 
-	Username Used   : 
-	User Agent Used : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+	Time Accessed   : 2019-05-26 11:57:15.702456
+	Source Host IP  : 10.20.10.45
+	Source Host Port: 38548
+	Password Used   : test
+	Username Used   : Test
+	User Agent Used : Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0
 
 Host Doing SYN Scan:
 0. Data 0: 
@@ -94,17 +82,3 @@ Host Doing SYN Scan:
 	Time Accessed   : 2019-05-28 14:05:18.935935 - 2019-05-28 14:05:19.041882
 
 Host Trying FTP:
-1. Data 1: 
-	Destination Port: 21
-	Time Accessed   : 2019-05-28 13:55:26.643560
-	Source Host IP  : 192.168.0.5
-	Source Host Port: 52100
-	Password Used   : chrome@example.com
-	Username Used   : anonymous
-2. Data 2: 
-	Destination Port: 21
-	Time Accessed   : 2019-05-28 13:55:34.263072
-	Source Host IP  : 192.168.0.5
-	Source Host Port: 52101
-	Password Used   : APALULIATLIAT
-	Username Used   : iniftp
