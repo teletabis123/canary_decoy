@@ -3,6 +3,7 @@ import os
 import json
 import subprocess
 import settingConfigFile as settingConfig
+from os.path import expanduser
 from six.moves import input
 from datetime import datetime
 
@@ -31,7 +32,9 @@ def main_menu() :
 
 def ReadFile():
     global contents
-    fread = open("opencanary.log", "r")
+    logPath = expanduser("~") + "/../var/tmp/opencanary.log"
+    fread = open(logPath, "r")
+    #fread = open("opencanary.log", "r")
     contents = fread.read()
     # print(contents)
     fread.close()
@@ -323,7 +326,6 @@ if __name__ == "__main__" :
             if inp == 4:
                 print("Custom")
                 settingConfig.manualSetting()
-            global startcanary
             startcanary = True
             startCanary()
 
@@ -334,7 +336,6 @@ if __name__ == "__main__" :
         elif(nav == "4"):
             print("Menu Stop Honeypot")
             stopCanary()
-            global startcanary
             startcanary = False
 
         elif(nav == "5"):
