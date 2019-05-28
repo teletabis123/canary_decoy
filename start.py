@@ -21,6 +21,7 @@ def ReadFile():
     global contents
     fread = open("opencanary.log", "r")
     contents = fread.read()
+    print(contents)
     fread.close()
     
 def Parser():
@@ -62,21 +63,43 @@ def ProcessJson():
     dataLog = json.loads(data)
     
     # print(dataLog)
-    logFile = []
+    logFileHTMLSign = []
+    logFileHTMLIn = []
+    logFileSynScan = []
+    logFileFTP = []
     i=0
     for d in dataLog:
-        if(d["logtype"] == 3001):
+        if(d["logtype"] == 3000):
             print(str(i) + " Data HTML Not Input")
-        elif(d["logtype"] == 3000):
+            logFileHTMLIn.append(d)
+
+        elif(d["logtype"] == 3001):
             print(str(i) + " Data HTML Input")
-        elif(d["logtype"] == 1001):
-            print(str(i) + " Data Initiate")
+            logFileHTMLSign.append(d)
+
+        # elif(d["logtype"] == 1001):
+        #     print(str(i) + " Data Initiate")
+        #     logFileHTMLIn.append(d)
+
         elif(d["logtype"] == 5001):
-            print(str(i) + " Data SYN")
+            print(str(i) + " Data Scan SYN")
+            logFileSynScan.append(d)
+
         elif(d["logtype"] == 2000):
             print(str(i) + " Data FTP")
             # ada username dan password
+            logFileFTP.append(d)
+
         i = i+1
+
+    print("\nHTML IN")
+    print(logFileHTMLIn) #3000
+    print("\nHTML Sign")
+    print(logFileHTMLSign) #3001
+    print("\nSYN Scan")
+    print(logFileSynScan) #5001
+    print("\nFTP File")
+    print(logFileSynScan) # 2000
 
     print("Log data for HTML: \n")
     i = 1
@@ -95,10 +118,7 @@ def ProcessJson():
             i = i+1
             
 def doInstallation():
-    shellscript = subprocess.Popen(["install.sh"], stdin=subprocess.PIPE)
-    shellscript.stdin.write("yes\n")
-    shellscript.stdin.close()
-    returncode = shellscript.wait()
+    subprocess.call("./install.sh")
 
 def startCanary():
     shellscript = subprocess.Popen(["start.sh"], stdin=subprocess.PIPE)
