@@ -264,18 +264,18 @@ if __name__ == "__main__" :
             print("  2. Use Linux configuration")
             print("  3. Use Windows configuration")
             print("  4. Use custom configuration")
-            i = int(input("Choose: "))
+            inp = int(input("Choose: "))
             configFile()
-            if i == 1:
+            if inp == 1:
                 print("Default")
                 settingConfig.defaultSetting()
-            if i == 2:
+            if inp == 2:
                 print("Linux")
                 settingConfig.setLinuxDefault()
-            if i == 3:
+            if inp == 3:
                 print("Windows")
                 settingConfig.setWindowsDefault()
-            if i == 4:
+            if inp == 4:
                 print("Custom")
                 settingConfig.manualSetting()
             global startcanary
