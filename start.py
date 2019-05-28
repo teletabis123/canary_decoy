@@ -3,6 +3,7 @@ import os
 import json
 import subprocess
 from six.moves import input
+from datetime import datetime
 
 contents = ""
 json_str = ""
@@ -39,9 +40,6 @@ def Parser():
     global contents
     global json_str
     data = contents.split("\n")
-    # print("Data:\n")
-    # for d in data :
-    #     print(d+"\n")
     
     json_str = "[\n"
     for i in range (0, len(data)):
@@ -89,10 +87,6 @@ def ProcessJson():
             # print(str(i) + " Data HTML Input")
             logFileHTMLSign.append(d)
 
-        # elif(d["logtype"] == 1001):
-        #     print(str(i) + " Data Initiate")
-        #     logFileHTMLIn.append(d)
-
         elif(d["logtype"] == 5001):
             # print(str(i) + " Data Scan SYN")
             logFileSynScan.append(d)
@@ -103,6 +97,68 @@ def ProcessJson():
             logFileFTP.append(d)
 
         i = i+1
+
+    scanIP = []
+    scanHostPort = []
+    scanPort = []
+    scanTime = []
+    tempPort = []
+    tempTime = []
+
+    i = 0
+    
+    for i in range(0, len(logFileSynScan)) :
+        if(i == 0): # masukkan IP baru
+            dateTime1 = datetime.strptime(logFileSynScan[i]["local_time"], "%Y-%m-%d %H:%M:%S.%f")
+            ipMulai = logFileSynScan[i]["src_host"]
+            scanIP.append(ipMulai)
+            scanHostPort.append(logFileSynScan[i]["src_port"])
+            tempPort.append(logFileSynScan[i]["dst_port"])
+            tempTime.append(dateTime1)
+        else:
+            dateTime2 = datetime.strptime(logFileSynScan[i]["local_time"], "%Y-%m-%d %H:%M:%S.%f")
+            if(logFileSynScan[i]["src_host"] == ipMulai): # cek tanggal, kalau sama tambah temp, kalo beda tambah semua, temp kosongin
+                dif = (dateTime2-dateTime1).total_seconds()
+                timeDif = dif
+                if((dif > 0 and dif < 4) or (dif < -56)): # masih sama
+                    tempPort.append(logFileSynScan[i]["dst_port"])
+                    if(len(tempTime) == 1):
+                        tempTime.append(dateTime2)
+                    else:
+                        tempTime[1] = dateTime2
+                else: # udah beda
+                    scanPort.append(tempPort)
+                    scanTime.append(tempTime)
+                    tempPort = []
+                    tempTime = []
+                    ipMulai = logFileSynScan[i]["src_host"]
+                    scanIP.append(ipMulai)
+                    scanHostPort.append(logFileSynScan[i]["src_port"])
+                    tempPort.append(logFileSynScan[i]["dst_port"])
+                    tempTime.append(dateTime2)                
+            else: # beda, jadi tambah IP baru
+                scanPort.append(tempPort)
+                scanTime.append(tempTime)
+                tempPort = []
+                tempTime = []
+                ipMulai = logFileSynScan[i]["src_host"]
+                scanIP.append(ipMulai)
+                scanHostPort.append(logFileSynScan[i]["src_port"])
+                tempPort.append(logFileSynScan[i]["dst_port"])
+                tempTime.append(dateTime2) 
+            dateTime1 = dateTime2
+    scanPort.append(tempPort)
+    scanTime.append(tempTime)
+
+    # print("\nIP: ")
+    # print(scanIP)
+    # print("\nHostPort: ")
+    # print(scanHostPort)
+    # print("\nPort: ")
+    # print(scanPort)
+    # print("\nTime: ")
+    # print(scanTime)
+
 
     f = open("LogActivities.txt", "w+")
 
@@ -132,13 +188,24 @@ def ProcessJson():
         i = i+1
     f.write("\nHost Doing SYN Scan:\n")
     i=1
-    for d in logFileSynScan:
+    for i in range(0, len(scanIP)):
         f.write(str(i) + ". Data "+str(i)+": \n")
-        f.write("\tDestination Port: " + str(d["dst_port"])+"\n")
-        f.write("\tTime Accessed   : " + d["local_time"]+"\n")
-        f.write("\tSource Host IP  : " + d["src_host"]+"\n")
-        f.write("\tSource Host Port: " + str(d["src_port"])+"\n") 
-        i = i+1
+        f.write("\tSource Host IP  : " + scanIP[i]+"\n")
+        f.write("\tSource Host Port: " + scanHostPort[i]+"\n") 
+        f.write("\tDestination Port: ")
+        for j in range(0, len(scanPort[i])):
+            f.write(str(scanPort[i][j]))
+            if(j != len(scanPort[i])-1):
+                f.write(", ")
+        # print(scanTime[i][0], scanTime[i][1])
+        f.write("\n\tTime Accessed   : " )
+        if(len(scanTime[i]) == 2):
+            f.write(str(scanTime[i][0]) + " - " + str(scanTime[i][1]) +"\n")
+        else:
+            f.write(str(scanTime[i][0]) + "\n")
+        
+
+        
     f.write("\nHost Trying FTP:\n")
     i=1
     for d in logFileFTP:
@@ -154,22 +221,6 @@ def ProcessJson():
     f.close()
 
     print("Log Data is saved in LogActivities.txt")
-
-    # print("Log data for HTML: \n")
-    # i = 1
-    # for d in dataLog:
-    #     # print(str(i)+": "+d["dst_host"])
-    #     # print(d)
-    #     if(len(d["logdata"]) == 6):
-    #         print("Data "+str(i)+": ")
-    #         print("\tDestination Port: " + str(d["dst_port"]))
-    #         print("\tTime Accessed   : " + d["local_time"])
-    #         print("\tSource Host IP  : " + d["src_host"])
-    #         print("\tSource Host Port: " + str(d["src_port"])) 
-    #         print("\tPassword Used   : " + d["logdata"]["PASSWORD"])
-    #         print("\tUsername Used   : " + d["logdata"]["USERNAME"])
-    #         print("\tUser Agent Used : " + d["logdata"]["USERAGENT"])
-    #         i = i+1
             
 def doInstallation():
     subprocess.call("./install.sh")
