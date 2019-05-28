@@ -348,7 +348,7 @@ if __name__ == "__main__" :
                 os.system("clear")
             break
         else :
-            continue;
+            continue
         input("Press any button to continue")
         os.system("clear")
 
