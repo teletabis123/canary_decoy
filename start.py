@@ -302,6 +302,8 @@ if __name__ == "__main__" :
                 print("Out from program")
                 os.system("clear")
             break
+        else :
+            continue;
         input("Press any button to continue")
         os.system("clear")
 
