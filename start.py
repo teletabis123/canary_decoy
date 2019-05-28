@@ -7,8 +7,18 @@ contents = ""
 json_str = ""
 startCanary = False
 
+def main_logo() :
+    print(" _______   _______ .__   __.      ___      .______     ____    ____ ")
+    print("|       \\ |   ____||  \\ |  |     /   \\     |   _  \\    \\   \\  /   / ")
+    print("|  .--.  ||  |__   |   \\|  |    /  ^  \\    |  |_)  |    \\   \\/   /  ")
+    print("|  |  |  ||   __|  |  . `  |   /  /_\\  \\   |      /      \\_    _/   ")
+    print("|  '--'  ||  |____ |  |\\   |  /  _____  \\  |  |\\  \\----.   |  |     ")
+    print("|_______/ |_______||__| \\__| /__/     \\__\\ | _| `._____|   |__|     ")
+    print("")
+
 def main_menu() :
     os.system("clear")
+    main_logo()
     print("     0. About")
     print("     1. Installation")
     print("     2. Configure Server")
@@ -170,10 +180,13 @@ if __name__ == "__main__" :
             if(startCanary):
                 print("Stop Decanary")
                 os.system("opencanaryd --stop")
+                os.system("clear")
             else:
                 print("Out from program")
+                os.system("clear")
             break
-        nav = input("Press any button ... ")
+        raw_input("Press any button to continue")
+        os.system("clear")
 
     
     # ReadWrite()
