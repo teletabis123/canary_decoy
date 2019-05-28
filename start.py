@@ -21,7 +21,7 @@ def ReadFile():
     global contents
     fread = open("opencanary.log", "r")
     contents = fread.read()
-    print(contents)
+    # print(contents)
     fread.close()
     
 def Parser():
@@ -61,8 +61,9 @@ def ProcessJson():
     f = open("logfile.txt","r")
     data = f.read()
     dataLog = json.loads(data)
+    f.close()
     
-    # print(dataLog)
+    # print("\n\n")
     logFileHTMLSign = []
     logFileHTMLIn = []
     logFileSynScan = []
@@ -70,11 +71,11 @@ def ProcessJson():
     i=0
     for d in dataLog:
         if(d["logtype"] == 3000):
-            print(str(i) + " Data HTML Not Input")
+            # print(str(i) + " Data HTML Not Input")
             logFileHTMLIn.append(d)
 
         elif(d["logtype"] == 3001):
-            print(str(i) + " Data HTML Input")
+            # print(str(i) + " Data HTML Input")
             logFileHTMLSign.append(d)
 
         # elif(d["logtype"] == 1001):
@@ -82,40 +83,82 @@ def ProcessJson():
         #     logFileHTMLIn.append(d)
 
         elif(d["logtype"] == 5001):
-            print(str(i) + " Data Scan SYN")
+            # print(str(i) + " Data Scan SYN")
             logFileSynScan.append(d)
 
         elif(d["logtype"] == 2000):
-            print(str(i) + " Data FTP")
+            # print(str(i) + " Data FTP")
             # ada username dan password
             logFileFTP.append(d)
 
         i = i+1
 
-    print("\nHTML IN")
-    print(logFileHTMLIn) #3000
-    print("\nHTML Sign")
-    print(logFileHTMLSign) #3001
-    print("\nSYN Scan")
-    print(logFileSynScan) #5001
-    print("\nFTP File")
-    print(logFileSynScan) # 2000
+    f = open("LogActivities.txt", "w+")
 
-    print("Log data for HTML: \n")
-    i = 1
-    for d in dataLog:
-        # print(str(i)+": "+d["dst_host"])
-        # print(d)
-        if(len(d["logdata"]) == 6):
-            print("Data "+str(i)+": ")
-            print("\tDestination Port: " + str(d["dst_port"]))
-            print("\tTime Accessed   : " + d["local_time"])
-            print("\tSource Host IP  : " + d["src_host"])
-            print("\tSource Host Port: " + str(d["src_port"])) 
-            print("\tPassword Used   : " + d["logdata"]["PASSWORD"])
-            print("\tUsername Used   : " + d["logdata"]["USERNAME"])
-            print("\tUser Agent Used : " + d["logdata"]["USERAGENT"])
-            i = i+1
+    f.write("Detected activities:\n")
+    f.write("\nHost get inside HTML:\n")
+    i=1
+    for d in logFileHTMLIn:
+        f.write(str(i) + ". Data "+str(i)+": \n")
+        f.write("\tDestination Port: " + str(d["dst_port"])+"\n")
+        f.write("\tTime Accessed   : " + d["local_time"]+"\n")
+        f.write("\tSource Host IP  : " + d["src_host"]+"\n")
+        f.write("\tSource Host Port: " + str(d["src_port"])+"\n") 
+        # print(d['logdata']['USERAGENT'])
+        f.write("\tUser Agent Used : " + d['logdata']['USERAGENT']+"\n")
+        i = i+1
+    f.write("\nHost Sign in into HTML:\n")
+    i=1
+    for d in logFileHTMLSign:
+        f.write(str(i) + ". Data "+str(i)+": \n")
+        f.write("\tDestination Port: " + str(d["dst_port"])+"\n")
+        f.write("\tTime Accessed   : " + d["local_time"]+"\n")
+        f.write("\tSource Host IP  : " + d["src_host"]+"\n")
+        f.write("\tSource Host Port: " + str(d["src_port"])+"\n") 
+        f.write("\tPassword Used   : " + d["logdata"]["PASSWORD"]+"\n")
+        f.write("\tUsername Used   : " + d["logdata"]["USERNAME"]+"\n")
+        f.write("\tUser Agent Used : " + d["logdata"]["USERAGENT"]+"\n")
+        i = i+1
+    f.write("\nHost Doing SYN Scan:\n")
+    i=1
+    for d in logFileSynScan:
+        f.write(str(i) + ". Data "+str(i)+": \n")
+        f.write("\tDestination Port: " + str(d["dst_port"])+"\n")
+        f.write("\tTime Accessed   : " + d["local_time"]+"\n")
+        f.write("\tSource Host IP  : " + d["src_host"]+"\n")
+        f.write("\tSource Host Port: " + str(d["src_port"])+"\n") 
+        i = i+1
+    f.write("\nHost Trying FTP:\n")
+    i=1
+    for d in logFileFTP:
+        f.write(str(i) + ". Data "+str(i)+": \n")
+        f.write("\tDestination Port: " + str(d["dst_port"])+"\n")
+        f.write("\tTime Accessed   : " + d["local_time"]+"\n")
+        f.write("\tSource Host IP  : " + d["src_host"]+"\n")
+        f.write("\tSource Host Port: " + str(d["src_port"])+"\n") 
+        f.write("\tPassword Used   : " + d["logdata"]["PASSWORD"]+"\n")
+        f.write("\tUsername Used   : " + d["logdata"]["USERNAME"]+"\n")
+        i = i+1
+
+    f.close()
+
+    print("Log Data is saved in LogActivities.txt")
+
+    # print("Log data for HTML: \n")
+    # i = 1
+    # for d in dataLog:
+    #     # print(str(i)+": "+d["dst_host"])
+    #     # print(d)
+    #     if(len(d["logdata"]) == 6):
+    #         print("Data "+str(i)+": ")
+    #         print("\tDestination Port: " + str(d["dst_port"]))
+    #         print("\tTime Accessed   : " + d["local_time"])
+    #         print("\tSource Host IP  : " + d["src_host"])
+    #         print("\tSource Host Port: " + str(d["src_port"])) 
+    #         print("\tPassword Used   : " + d["logdata"]["PASSWORD"])
+    #         print("\tUsername Used   : " + d["logdata"]["USERNAME"])
+    #         print("\tUser Agent Used : " + d["logdata"]["USERAGENT"])
+    #         i = i+1
             
 def doInstallation():
     subprocess.call("./install.sh")
@@ -173,7 +216,7 @@ if __name__ == "__main__" :
             else:
                 print("Out from program")
             break
-        nav = input("Press any button ... ")
+        input("Press any button ... ")
 
     
     # ReadWrite()
