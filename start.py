@@ -62,6 +62,21 @@ def ProcessJson():
     dataLog = json.loads(data)
     
     # print(dataLog)
+    logFile = []
+    i=0
+    for d in dataLog:
+        if(d["logtype"] == 3001):
+            print(str(i) + " Data HTML Not Input")
+        elif(d["logtype"] == 3000):
+            print(str(i) + " Data HTML Input")
+        elif(d["logtype"] == 1001):
+            print(str(i) + " Data Initiate")
+        elif(d["logtype"] == 5001):
+            print(str(i) + " Data SYN")
+        elif(d["logtype"] == 2000):
+            print(str(i) + " Data FTP")
+            # ada username dan password
+        i = i+1
 
     print("Log data for HTML: \n")
     i = 1
@@ -104,6 +119,10 @@ if __name__ == "__main__" :
         nav = input("Choose a Menu (0 - 6) : ")
         if(int(nav) == 0):
             print("Menu About")
+            fread = open("logfileScan.txt", "r")
+            contents = fread.read()
+            print(contents)
+            fread.close()
 
         elif(int(nav) == 1):
             print("Menu Installation")
