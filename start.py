@@ -1,8 +1,10 @@
 #!/bin/bash
 import os
+import json
+# import rhinoscriptsyntax as rs
 
 contents = ""
-json = ""
+json_str = ""
 
 def main_menu() :
     print("     0. About")
@@ -21,32 +23,56 @@ def ReadFile():
     
 def Parser():
     global contents
-    global json
+    global json_str
     data = contents.split("\n")
-    print("Data:\n")
-    for d in data :
-        print(d+"\n")
+    # print("Data:\n")
+    # for d in data :
+    #     print(d+"\n")
     
-    json = "[\n"
+    json_str = "[\n"
     for i in range (0, len(data)):
         if i != 0  and i != len(data)-1:
-            json = json + ", \n"
-        json = json + "\t"+ data[i] 
-    json = json + "\n]"
-    print("Json: \n"+json)
+            json_str = json_str + ", \n"
+        json_str = json_str + "\t"+ data[i] 
+    json_str = json_str + "\n]"
+    # print("Json: \n"+json)
 
 def WriteFile():
-    global json
+    global json_str
     fwrite = open("logfile.txt", "w+")
-    fwrite.write(json)
+    fwrite.write(json_str)
     fwrite.close()
 
 def ReadWrite():
     f = open("steps.txt", "r+")
     temp = f.read()
-    print(temp)
+    # print(temp)
     f.write(temp + "\nasdf")
     f.close()
+
+def ProcessJson():
+    f = open("logfile.txt","r")
+    data = f.read()
+    dataLog = json.loads(data)
+    
+    # print(dataLog)
+
+    i = 1
+    for d in dataLog:
+        print(str(i)+": "+d["dst_host"])
+        i = i+1
+        # print(d)
+        if(len(d["logdata"]) == 6):
+            print("data: \n")
+            print("\tDestination Port: " + str(d["dst_port"]))
+            print("\tTime Accessed   : " + d["local_time"])
+            print("\tSource Host IP  : " + d["src_host"])
+            print("\tSource Host Port: " + str(d["src_port"])) 
+            print("\tPassword Used   : " + d["logdata"]["PASSWORD"])
+            print("\tUsername Used   : " + d["logdata"]["USERNAME"])
+            print("\tUser Agent Used : " + d["logdata"]["USERAGENT"])
+            
+
 
 # main
 if __name__ == "__main__" :
@@ -77,8 +103,10 @@ if __name__ == "__main__" :
         break
 
     ReadFile()
-    print("Contents: "+contents)
+    # print("Contents: "+contents)
     Parser()
     WriteFile()
     # ReadWrite()
+
+    ProcessJson()
     
