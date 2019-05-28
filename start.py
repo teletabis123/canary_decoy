@@ -234,6 +234,52 @@ def startCanary():
 def stopCanary():
     subprocess.call("./stop.sh")
 
+def about():
+    print("""
+        Hello welcome to Denary, an app to help you create an Honeypot that can act as a decoy
+        to protect and detect possible attacks. This application was made using OpenCanary to
+        Make the decoy Server.
+
+        -----How it works----- 
+ 
+        1. Installation
+           => This option helps you with the installation of OpenCanary and its depedencies. All you need to do is to wait
+              for the installation to be completed and you can move on to the Start Honeypot menu
+        2. Start Honeypot
+           => Before starting the honeypot this option will ask you if you want to be notified by email if something happens
+              to the honeypot. Then you will be asked to choose between 4 Configurations that you would like for the honeypot.
+               - Default
+               - Linux Server Configuration
+               - Windows Server Configuration
+               - Use a Custom Configuration
+              The honeypot will run after the configuration has been done and you will be directed to the Main menu.
+        3. Display Logs
+           => This option will show you the Logs of the Honeypot, it contains activities that was recorded when the Honeypot is running.
+        4. Stop Honeypot
+           => This option will help you stop the decoy honeypot from running.
+        5. Exit
+           => Exits the Application.
+        
+        -----Creators-----
+       
+        Created by students from Universitas Multimedia Nusantara : http://www.umn.ac.id/
+       	       1. Aldric Leonardo
+               2. James Christian
+               3. Matthew Evans
+               4. Vionie Laorensa
+
+        -----Links and References-----
+
+        Here is the link to the OpenCanary Documentation : https://buildmedia.readthedocs.org/media/pdf/opencanary/latest/opencanary.pdf
+
+        Here is the link to the Steps to make the Decoy : https://niiconsulting.com/checkmate/2017/05/canary-an-open-source-decoy/ 
+
+        Finally, here is the link to our Github : https://github.com/teletabis123/canary_decoy
+
+        These Links will help you understand better how this application works.    """)
+    print("")
+    print("")
+
 # main
 if __name__ == "__main__" :
 
@@ -246,11 +292,10 @@ if __name__ == "__main__" :
         main_menu()
         nav = input("Choose a Menu (0 - 6) : ")
         if(nav == "0"):
+            os.system("clear")
+            main_logo()
             print("Menu About")
-            fread = open("logfileScan.txt", "r")
-            contents = fread.read()
-            print(contents)
-            fread.close()
+            about()
 
         elif(nav == "1"):
             print("Menu Installation")
