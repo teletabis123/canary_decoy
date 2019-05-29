@@ -3,82 +3,21 @@ Detected activities:
 Host get inside HTML:
 1. Data 1: 
 	Destination Port: 80
-	Time Accessed   : 2019-05-26 11:56:46.592954
-	Source Host IP  : 10.20.10.45
-	Source Host Port: 38544
-	User Agent Used : Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0
+	Time Accessed   : 2019-05-28 22:52:13.492211
+	Source Host IP  : 192.168.0.7
+	Source Host Port: 59020
+	User Agent Used : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
 
 Host Sign in into HTML:
 1. Data 1: 
 	Destination Port: 80
-	Time Accessed   : 2019-05-26 11:56:33.864035
-	Source Host IP  : 10.20.10.133
-	Source Host Port: 49115
-	Password Used   : sjdjdnf
-	Username Used   : kimakonta
-	User Agent Used : Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Mobile Safari/537.36
-2. Data 2: 
-	Destination Port: 80
-	Time Accessed   : 2019-05-26 11:56:50.395588
-	Source Host IP  : 10.20.10.133
-	Source Host Port: 49115
-	Password Used   : aderai
-	Username Used   : aderai
-	User Agent Used : Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Mobile Safari/537.36
-3. Data 3: 
-	Destination Port: 80
-	Time Accessed   : 2019-05-26 11:57:15.702456
-	Source Host IP  : 10.20.10.45
-	Source Host Port: 38548
-	Password Used   : test
-	Username Used   : Test
-	User Agent Used : Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0
+	Time Accessed   : 2019-05-28 22:52:57.049280
+	Source Host IP  : 192.168.0.7
+	Source Host Port: 59025
+	Password Used   : goreng
+	Username Used   : kentang
+	User Agent Used : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
 
 Host Doing SYN Scan:
-0. Data 0: 
-	Source Host IP  : 192.168.0.9
-	Source Host Port: 63223
-	Destination Port: 8888, 1720, 139, 135, 554, 49176, 8090, 49400, 3301, 3268, 5825, 1047, 722, 1501, 5822, 32, 10180, 49160, 11110, 5087, 2135, 63331, 9103, 2200, 2288, 2046, 6692, 1600, 3814, 2382, 5004, 4567, 50000, 6009, 5002, 9575, 3920, 7937, 1175, 808, 3003, 6566, 10215, 9593, 1085, 28201, 32775, 3001, 21, 80
-	Time Accessed   : 2019-05-28 13:32:14.241808 - 2019-05-28 13:32:23.572494
-1. Data 1: 
-	Source Host IP  : 192.168.0.9
-	Source Host Port: 48301
-	Destination Port: 21, 21, 21, 21, 21, 21, 21, 1, 80, 80, 80, 80, 80
-	Time Accessed   : 2019-05-28 13:32:29.711918 - 2019-05-28 13:32:31.552247
-2. Data 2: 
-	Source Host IP  : 127.0.0.1
-	Source Host Port: 53214
-	Destination Port: 631, 53214
-	Time Accessed   : 2019-05-28 13:35:25.015765 - 2019-05-28 13:35:25.016253
-3. Data 3: 
-	Source Host IP  : 192.168.0.5
-	Source Host Port: 51982
-	Destination Port: 80, 80, 80, 80, 80
-	Time Accessed   : 2019-05-28 13:51:20.283625 - 2019-05-28 13:51:20.404079
-4. Data 4: 
-	Source Host IP  : 192.168.0.5
-	Source Host Port: 52100
-	Destination Port: 21
-	Time Accessed   : 2019-05-28 13:55:26.615976
-5. Data 5: 
-	Source Host IP  : 192.168.0.5
-	Source Host Port: 52101
-	Destination Port: 21
-	Time Accessed   : 2019-05-28 13:55:34.256157
-6. Data 6: 
-	Source Host IP  : 127.0.0.1
-	Source Host Port: 48962
-	Destination Port: 80, 48962, 80
-	Time Accessed   : 2019-05-28 13:57:45.268194 - 2019-05-28 13:57:45.269130
-7. Data 7: 
-	Source Host IP  : 127.0.0.1
-	Source Host Port: 48962
-	Destination Port: 80
-	Time Accessed   : 2019-05-28 13:57:50.268041
-8. Data 8: 
-	Source Host IP  : 192.168.0.5
-	Source Host Port: 52231
-	Destination Port: 80, 80, 80, 80, 80
-	Time Accessed   : 2019-05-28 14:05:18.935935 - 2019-05-28 14:05:19.041882
 
 Host Trying FTP:

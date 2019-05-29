@@ -3,6 +3,7 @@ import os
 import json
 import subprocess
 import settingConfigFile as settingConfig
+from os.path import expanduser
 from six.moves import input
 from datetime import datetime
 
@@ -31,7 +32,9 @@ def main_menu() :
 
 def ReadFile():
     global contents
-    fread = open("opencanary.log", "r")
+    logPath = expanduser("~") + "/../var/tmp/opencanary.log"
+    fread = open(logPath, "r")
+    #fread = open("opencanary.log", "r")
     contents = fread.read()
     # print(contents)
     fread.close()
