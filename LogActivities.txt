@@ -13,6 +13,12 @@ Host get inside HTML:
 	Source Host IP  : 192.168.0.7
 	Source Host Port: 59263
 	User Agent Used : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+3. Data 3: 
+	Destination Port: 80
+	Time Accessed   : 2019-05-29 00:52:49.298446
+	Source Host IP  : 192.168.0.7
+	Source Host Port: 59415
+	User Agent Used : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
 
 Host Sign in into HTML:
 1. Data 1: 
@@ -47,7 +53,25 @@ Host Sign in into HTML:
 	Password Used   : 123123
 	Username Used   : bossu
 	User Agent Used : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
+5. Data 5: 
+	Destination Port: 80
+	Time Accessed   : 2019-05-29 00:53:04.172985
+	Source Host IP  : 192.168.0.7
+	Source Host Port: 59416
+	Password Used   : tidakpintar
+	Username Used   : chatbot
+	User Agent Used : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36
 
 Host Doing SYN Scan:
+0. Data 0: 
+	Source Host IP  : 127.0.0.1
+	Source Host Port: 40260
+	Destination Port: 1514, 40260, 1514, 40262, 1514
+	Time Accessed   : 2019-05-29 00:59:30.779089 - 2019-05-29 00:59:30.783261
+1. Data 1: 
+	Source Host IP  : 192.168.0.9
+	Source Host Port: 40677
+	Destination Port: 143, 40677, 3306, 40677, 554
+	Time Accessed   : 2019-05-29 01:00:33.808968 - 2019-05-29 01:00:33.810326
 
 Host Trying FTP:

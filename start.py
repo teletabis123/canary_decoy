@@ -212,8 +212,6 @@ def ProcessJson():
         i = i+1
 
     f.close()
-
-    print("Log Data is saved in LogActivities.txt")
             
 def doInstallation():
     subprocess.call("./install.sh")
@@ -311,7 +309,7 @@ if __name__ == "__main__" :
             print("  2. Use Linux configuration")
             print("  3. Use Windows configuration")
             print("  4. Use custom configuration")
-            inp = int(input("Choose: "))
+            inp = input("Choose: ")
             configFile()
             if inp == "1":
                 print("Default")
@@ -333,6 +331,7 @@ if __name__ == "__main__" :
         elif(nav == "3"):
             print("Menu Display Log")
             ProcessJson()
+            os.system("gedit LogActivities.txt")
 
         elif(nav == "4"):
             print("Menu Stop Honeypot")
