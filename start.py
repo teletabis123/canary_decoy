@@ -153,16 +153,6 @@ def ProcessJson():
     scanPort.append(tempPort)
     scanTime.append(tempTime)
 
-    # print("\nIP: ")
-    # print(scanIP)
-    # print("\nHostPort: ")
-    # print(scanHostPort)
-    # print("\nPort: ")
-    # print(scanPort)
-    # print("\nTime: ")
-    # print(scanTime)
-
-
     f = open("LogActivities.txt", "w+")
 
     f.write("Detected activities:\n")
