@@ -153,16 +153,6 @@ def ProcessJson():
     scanPort.append(tempPort)
     scanTime.append(tempTime)
 
-    # print("\nIP: ")
-    # print(scanIP)
-    # print("\nHostPort: ")
-    # print(scanHostPort)
-    # print("\nPort: ")
-    # print(scanPort)
-    # print("\nTime: ")
-    # print(scanTime)
-
-
     f = open("LogActivities.txt", "w+")
 
     f.write("Detected activities:\n")
@@ -323,18 +313,20 @@ if __name__ == "__main__" :
             print("  4. Use custom configuration")
             inp = int(input("Choose: "))
             configFile()
-            if inp == 1:
+            if inp == "1":
                 print("Default")
                 settingConfig.defaultSetting()
-            if inp == 2:
+            elif inp == "2":
                 print("Linux")
                 settingConfig.setLinuxDefault()
-            if inp == 3:
+            elif inp == "3":
                 print("Windows")
                 settingConfig.setWindowsDefault()
-            if inp == 4:
+            elif inp == "4":
                 print("Custom")
                 settingConfig.manualSetting()
+            else :
+                continue
             startcanary = True
             startCanary()
 
