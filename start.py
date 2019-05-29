@@ -3,6 +3,7 @@ import os
 import json
 import subprocess
 import settingConfigFile as settingConfig
+from os.path import expanduser
 from six.moves import input
 from datetime import datetime
 
@@ -31,7 +32,9 @@ def main_menu() :
 
 def ReadFile():
     global contents
-    fread = open("opencanary.log", "r")
+    logPath = expanduser("~") + "/../var/tmp/opencanary.log"
+    fread = open(logPath, "r")
+    #fread = open("opencanary.log", "r")
     contents = fread.read()
     # print(contents)
     fread.close()
@@ -280,7 +283,7 @@ if __name__ == "__main__" :
     #main loop
     while i == 1 :
         main_menu()
-        nav = input("Choose a Menu (0 - 6) : ")
+        nav = input("Choose a Menu (0 - 5) : ")
         if(nav == "0"):
             os.system("clear")
             main_logo()
@@ -294,6 +297,15 @@ if __name__ == "__main__" :
         elif(nav == "2"):
             os.system("clear")
             main_logo()
+            ans  = input("Would you like to be notified by email, about actvities that happen to the decoy ? (y/n) : ")
+            if(ans == "y") :
+                ans2 = input("Please enter a gmail account :")
+                femail = open("useremail.txt","w")
+                femail.write(ans2 + "\n")
+                femail.close()
+                os.system("python sendmail.py &")
+            os.system("clear")
+            main_logo() 
             print("Menu Start Honeypot")
             print("  1. Use default configuration")
             print("  2. Use Linux configuration")
@@ -322,10 +334,12 @@ if __name__ == "__main__" :
 
         elif(nav == "4"):
             print("Menu Stop Honeypot")
+            os.system("pkill -f sendmail.py")
             stopCanary()
             startcanary = False
 
         elif(nav == "5"):
+            os.system("pkill -f sendmail.py")
             print("Menu Exit")
             if(startCanary):
                 print("Stop Decanary")
