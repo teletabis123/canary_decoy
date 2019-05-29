@@ -150,16 +150,6 @@ def ProcessJson():
     scanPort.append(tempPort)
     scanTime.append(tempTime)
 
-    # print("\nIP: ")
-    # print(scanIP)
-    # print("\nHostPort: ")
-    # print(scanHostPort)
-    # print("\nPort: ")
-    # print(scanPort)
-    # print("\nTime: ")
-    # print(scanTime)
-
-
     f = open("LogActivities.txt", "w+")
 
     f.write("Detected activities:\n")
@@ -323,7 +313,6 @@ if __name__ == "__main__" :
             if inp == 4:
                 print("Custom")
                 settingConfig.manualSetting()
-            global startcanary
             startcanary = True
             startCanary()
 
@@ -334,7 +323,6 @@ if __name__ == "__main__" :
         elif(nav == "4"):
             print("Menu Stop Honeypot")
             stopCanary()
-            global startcanary
             startcanary = False
 
         elif(nav == "5"):
