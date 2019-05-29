@@ -2,6 +2,7 @@
 import os
 import smtplib
 import time
+import start
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
@@ -39,12 +40,13 @@ def attachment(email_user, email_password, email_send):
     msg.attach(MIMEText(body,'plain'))
 
     filename=path
-    attachment  =open(filename,'rb')
+    start.ProcessJson()
+    attachment  =open("LogActivities.txt",'rb')
 
     part = MIMEBase('application','octet-stream')
     part.set_payload((attachment).read())
     encoders.encode_base64(part)
-    part.add_header('Content-Disposition',"attachment; filename= "+filename)
+    part.add_header('Content-Disposition',"attachment; filename=LogActivities.txt")
 
     msg.attach(part)
     text = msg.as_string()
